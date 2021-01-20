@@ -1,0 +1,58 @@
+root
+{
+
+}
+
+body 
+{
+  height: 99vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.App
+{
+  background-color: #fbfbfb;
+  border: 1px solid black;
+  border-radius: 1rem;
+  width: 20rem;
+  min-height: 75vh;
+  overflow: hidden;
+
+  background: 
+  radial-gradient( circle 9em at 35% 14%, #0d0764 100%, transparent 101% ),
+  radial-gradient( circle 10em at 93% 16%, #15708b 100%, transparent 101% )
+}
+
+h1
+{
+	color: white;
+    margin: 3rem 1.5rem 0;
+}
+
+.tasks-counter
+{
+	margin: 1rem 1.5rem;
+    color: white;
+}
+
+.btn
+{
+	width: 10rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    border: none;
+    margin: 0 1rem;
+}
+
+.btn-clean
+{
+	display: block;
+    background: none;
+    border: none;
+    color: #15708b;
+    margin: 1rem;
+    margin-top: 4rem;
+    font-weight: 800;
+}
