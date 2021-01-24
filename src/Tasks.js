@@ -3,7 +3,7 @@ import { FaArrowLeft, FaPlusCircle } from 'react-icons/fa';
 import { useHistory, useParams } from "react-router-dom";
 
 
-function Tasks({folders , match, onDelete, updateTask}) 
+function Tasks({folders , match, onDelete, updateTaskDone}) 
 {
     const index = useParams();
     const id = folders.findIndex(folder => folder.id == index.id);
@@ -16,7 +16,7 @@ function Tasks({folders , match, onDelete, updateTask})
             <div className='contant'>
                 <ul className='tasks'>
                     { folders[id].tasks.length > 0 ? folders[id].tasks.map((task) =>(
-                        <Task key={task.id} task={task} folderId={id} onDelete={onDelete} updateTask={updateTask} />
+                        <Task key={task.id} task={task} folderId={id} onDelete={onDelete} updateTaskDone={updateTaskDone} />
                     )) : 'There are no tasks in this folder'}
                 </ul>
                 <FaPlusCircle className='add-task-btn'/>

@@ -62,41 +62,28 @@ function App() {
 			]
         }
 		]);
-	
-	function deleteTask( folderId ,taskId )
+
+
+	function deleteTask (taskId) 
 	{
 		setFolders((prev) =>
-		{
-			prev.forEach( (folder) => 
-			{
-				folder.tasks = folder.tasks.filter( task => task.id != taskId )
+			prev.map(({ tasks, ...rest }) => 
+			({
+				...rest,
+				tasks: tasks.filter((task) => task.id !== taskId)
 			})
-			return prev;
-		});
-		// setFolders( folders.forEach( (folder) => { folder.tasks = folder.tasks.filter( task => task.id != taskId )}) );
-		console.log(folders);
-	}
+		))
+    }
 
-	function updateTask( id, field, data )
+	function updateTaskDone( id )
 	{
-		switch (field) {
-			case 'text':
-				
-				break;
-			case 'done':
-				setFolders((prev) =>
-				{
-					prev.forEach( (folder) => 
-					{
-						folder.tasks = (folder.tasks.map(( task ) => task.id == id ? { ...task, done: !task.done } : task ));
-					})
-					return prev;
-				});
-				console.log(folders);
-				break;
-			default:
-				break;
-		}
+		setFolders((prev) =>
+			prev.map(({ tasks, ...rest }) => 
+			({
+				...rest,
+				tasks: tasks.map((task) => task.id === id ? {...task ,done: !task.done } :task )
+			}))
+		)
 	}
 
 	return (
@@ -110,15 +97,15 @@ function App() {
 				<Route path='/editFolder' />
 				{/* <Route path='/Tasks/:id' render={(props) => 
 					(
-    					<Tasks {...props} folders={folders} onDelete={deleteTask} updateTask={updateTask} />
+    					<Tasks {...props} folders={folders} onDelete={deleteTask} updateTaskDone={updateTaskDone} />
 					)}
-				/> */}
-				{/* <Route path='/Tasks/:id' > 
-					<Tasks folders={folders} onDelete={deleteTask} updateTask={updateTask} />
+				/>
+				<Route path='/Tasks/:id' > 
+					<Tasks folders={folders} onDelete={deleteTask} updateTaskDone={updateTaskDone} />
 				</Route> */}
-				<Switch>
-					<Route path='/Tasks/:id' children={<Tasks folders={folders} onDelete={deleteTask} updateTask={updateTask} /> } />
-				</Switch>
+
+				<Route path='/Tasks/:id' children={<Tasks folders={folders} onDelete={deleteTask} updateTaskDone={updateTaskDone} /> } />
+
 			</Router> 
 		</div>
 	);
