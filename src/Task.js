@@ -1,7 +1,9 @@
 import { FaTimes } from 'react-icons/fa';
 
-const Task = ({ task, onDelete, folderId, updateTask }) => {
+function Task ({ task, onDelete, folderId, updateTask }) 
+{
     const done = task.done ? 'done' : '';
+    
     return (
         <li className='task'>
             <span className={`task-done ${done}`} onClick={ () => updateTask( task.id ,'done' )}></span>

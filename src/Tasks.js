@@ -1,12 +1,12 @@
 import Task from './Task';
 import { FaArrowLeft, FaPlusCircle } from 'react-icons/fa';
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 
-const Tasks = ({folders , match, onDelete, updateTask}) => {
-    const index = match.params.id;
-    {console.log(folders)}
-    const id = folders.findIndex(folder => folder.id == index);
+function Tasks({folders , match, onDelete, updateTask}) 
+{
+    const index = useParams();
+    const id = folders.findIndex(folder => folder.id == index.id);
     let history = useHistory();
 
     return (

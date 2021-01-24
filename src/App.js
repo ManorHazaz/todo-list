@@ -65,7 +65,15 @@ function App() {
 	
 	function deleteTask( folderId ,taskId )
 	{
-		setFolders( folders.forEach( (folder) => { folder.tasks = folder.tasks.filter( task => task.id != taskId )}) );
+		setFolders((prev) =>
+		{
+			prev.forEach( (folder) => 
+			{
+				folder.tasks = folder.tasks.filter( task => task.id != taskId )
+			})
+			return prev;
+		});
+		// setFolders( folders.forEach( (folder) => { folder.tasks = folder.tasks.filter( task => task.id != taskId )}) );
 		console.log(folders);
 	}
 
@@ -76,10 +84,14 @@ function App() {
 				
 				break;
 			case 'done':
-				setFolders(folders.forEach( (folder) => 
+				setFolders((prev) =>
 				{
-					folder.tasks = (folder.tasks.map(( task ) => task.id == id ? { ...task, done: !task.done } : task ));
-				}))
+					prev.forEach( (folder) => 
+					{
+						folder.tasks = (folder.tasks.map(( task ) => task.id == id ? { ...task, done: !task.done } : task ));
+					})
+					return prev;
+				});
 				console.log(folders);
 				break;
 			default:
@@ -96,11 +108,17 @@ function App() {
   					)} 
 				/>
 				<Route path='/editFolder' />
-				<Route path='/Tasks/:id' render={(props) => 
+				{/* <Route path='/Tasks/:id' render={(props) => 
 					(
     					<Tasks {...props} folders={folders} onDelete={deleteTask} updateTask={updateTask} />
 					)}
-				/>
+				/> */}
+				{/* <Route path='/Tasks/:id' > 
+					<Tasks folders={folders} onDelete={deleteTask} updateTask={updateTask} />
+				</Route> */}
+				<Switch>
+					<Route path='/Tasks/:id' children={<Tasks folders={folders} onDelete={deleteTask} updateTask={updateTask} /> } />
+				</Switch>
 			</Router> 
 		</div>
 	);

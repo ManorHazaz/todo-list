@@ -1,7 +1,8 @@
 import Folder from './Folder';
 
 
-const Home = ({folders}) => {
+function Home ({folders})
+{
     return (
         <div className='container home'>
             <h1> Hello Manor! </h1>

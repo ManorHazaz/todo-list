@@ -2,7 +2,8 @@ import PropTypes from 'prop-types';
 import { FaFolder } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-const Folder = ({ folder }) => {
+function Folder ({ folder })
+{
     return (
         <Link to={`/tasks/${folder.id}`} >
             <div className='folder'>
