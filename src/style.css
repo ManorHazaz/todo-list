@@ -1,6 +1,7 @@
-root
+:root 
 {
-
+	--primary:  #0d0764;
+	--secondary:  #15708b;
 }
 
 body 
@@ -9,9 +10,10 @@ body
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	overflow: hidden;
 }
 
-.App
+.container
 {
   background-color: #fbfbfb;
   border: 1px solid black;
@@ -19,10 +21,28 @@ body
   width: 20rem;
   min-height: 75vh;
   overflow: hidden;
+}
 
-  background: 
-  radial-gradient( circle 9em at 35% 14%, #0d0764 100%, transparent 101% ),
-  radial-gradient( circle 10em at 93% 16%, #15708b 100%, transparent 101% )
+.home
+{
+	background: 
+	radial-gradient( circle 9em at 35% 14%, var(--primary) 100%, transparent 101% ),
+	radial-gradient( circle 10em at 93% 16%,var(--secondary) 100%, transparent 101% )
+}
+
+.page
+{
+	background-color: var(--primary);
+}
+
+.contant
+{
+	background-color: #fbfbfb;
+	border-top-left-radius: 1rem;
+	border-top-right-radius: 1rem;
+	width: 100%;
+	height: 56vh;
+	margin: 0;
 }
 
 h1
@@ -51,8 +71,133 @@ h1
 	display: block;
     background: none;
     border: none;
-    color: #15708b;
+    color:var(--secondary);
     margin: 1rem;
     margin-top: 4rem;
     font-weight: 800;
+}
+
+.folders
+{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-gap: 5%;
+    width: 95%;
+}
+
+.folder
+{
+	justify-self: center;
+    box-shadow: 0px 0px 16px -4px #888;
+    border-radius: 1rem;
+    display: grid;
+    grid-template-columns: 45% 45%;
+    padding-left: 5%;
+    grid-gap: 5%;
+    width: 75%;
+    height: 105%;
+}
+
+.folder .icon
+{
+	justify-self: start;
+	align-self: center;
+}
+
+.folder .tasks-counter
+{
+	justify-self: end;
+	align-self: center;
+	color: black;
+	/* margin: 0; */
+}
+
+.folder .title
+{
+	grid-column: 1 / span 2;
+	justify-self: start;
+	align-self: center;
+	/* margin: 0; */
+}
+
+.folder-title
+{
+	margin: 1rem 1.5rem;
+}
+
+.backarrow
+{
+	margin-left: 1.5rem;
+    margin-top: 2.5rem;
+    font-size: 2rem;
+}
+
+.tasks
+{
+	justify-content: center;
+	display: grid;
+	grid-template-columns: 80%;
+    list-style: none;
+    padding: 0;
+    padding-top: 2rem;
+}
+
+.task
+{
+	height: 8vh;
+	display: grid;
+	grid-template-columns: 10% 80% 10%;
+    border-top: 1px solid black;
+}
+
+.task .task-done
+{
+    justify-content: center;
+    align-self: center;
+    margin: 0;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 100%;
+    border: 1px solid #333333;
+    background-color: #333333;
+}
+
+.task .done
+{
+    background-color: #17e621ee;
+}
+
+.task .task-text
+{
+	font-weight: 600;
+	color: var(--primary);
+	background: transparent;
+    border: none;
+}
+
+.task .task-text:focus
+{
+	outline: none;
+}
+
+.task .task-delete
+{
+	color: #e42121;
+    justify-self: self-end;
+    align-self: center;
+    margin: 0;
+}
+
+.task:last-child
+{
+	border-bottom: 1px solid black;
+}
+
+.add-task-btn
+{
+	position: fixed;
+    font-size: 3rem;
+    top: 79%;
+    left: 48.8%;
+    color: var(--secondary);
 }
