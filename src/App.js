@@ -63,8 +63,62 @@ function App() {
         }
 		]);
 
+	function addFolder() 
+	{
+		const lastId = folders[folders.length-1].id;
+		const newFolder = { id: lastId + 1, title: 'new folder', logo: 'logo', tasks: [] };
+		setFolders([ ...folders, newFolder ]);
+	}
 
-	function deleteTask (taskId) 
+	function editFolderName( name, folderId ) 
+	{
+		setFolders((prev) =>
+			prev.map(({id, title, ...rest}) => 
+			({
+				...rest, id,
+				title: id == folderId ? name  : title
+			}))
+		);
+	}
+	
+	function addTask(folderId) 
+	{
+		var lastId = 0;
+		folders.forEach( folder => 
+		{
+			folder.tasks.forEach( task => 
+			{
+				if(task.id > lastId)
+				{
+					lastId = task.id;
+				}
+			});
+		});
+		
+		const newTask = [{ id: lastId + 1, text: 'new task', done: false }];
+
+		setFolders((prev) =>
+			prev.map(({id, tasks, ...rest}) => 
+			({
+				...rest, id,
+				tasks: id == folderId ? ([...tasks ,...newTask]) : tasks
+			}))
+		);
+	}
+	
+	function editTaskText( taskText, taskId ) 
+	{
+		setFolders((prev) =>
+			prev.map(({ tasks, ...rest }) => 
+			({
+				...rest,
+				tasks: tasks.map((task) => task.id === taskId ? {...task ,text: taskText } :task )
+			}))
+		)
+	}
+
+
+	function deleteTask(taskId) 
 	{
 		setFolders((prev) =>
 			prev.map(({ tasks, ...rest }) => 
@@ -91,7 +145,7 @@ function App() {
 			<Router>
 				<Route path='/' exact render={(props) => 
 					(
-    					<Home {...props} folders={folders} />
+    					<Home {...props} folders={folders} addFolder={addFolder} />
   					)} 
 				/>
 				<Route path='/editFolder' />
@@ -104,7 +158,7 @@ function App() {
 					<Tasks folders={folders} onDelete={deleteTask} updateTaskDone={updateTaskDone} />
 				</Route> */}
 
-				<Route path='/Tasks/:id' children={<Tasks folders={folders} onDelete={deleteTask} updateTaskDone={updateTaskDone} /> } />
+				<Route path='/Tasks/:id' children={<Tasks folders={folders} onDelete={deleteTask} updateTaskDone={updateTaskDone} addTask={addTask} editFolderName={editFolderName} editTaskText={editTaskText} /> } />
 
 			</Router> 
 		</div>

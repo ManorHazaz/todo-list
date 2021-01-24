@@ -3,23 +3,23 @@ import { FaArrowLeft, FaPlusCircle } from 'react-icons/fa';
 import { useHistory, useParams } from "react-router-dom";
 
 
-function Tasks({folders , match, onDelete, updateTaskDone}) 
+function Tasks({ folders , match, onDelete, updateTaskDone ,addTask, editFolderName ,editTaskText}) 
 {
-    const index = useParams();
-    const id = folders.findIndex(folder => folder.id == index.id);
+    const folderId = useParams().id;
+    const index = folders.findIndex(folder => folder.id == folderId);
     let history = useHistory();
 
     return (
         <div className='container page'>
             <FaArrowLeft onClick={() => history.goBack()} className='backarrow'/>
-            <h1 className='folder-title'>{folders[id].title}</h1>
+            <input type='text' className='folder-title' value={folders[index].title} onChange={(e) => editFolderName(e.target.value, folderId) } />
             <div className='contant'>
                 <ul className='tasks'>
-                    { folders[id].tasks.length > 0 ? folders[id].tasks.map((task) =>(
-                        <Task key={task.id} task={task} folderId={id} onDelete={onDelete} updateTaskDone={updateTaskDone} />
+                    { folders[index].tasks.length > 0 ? folders[index].tasks.map((task) =>(
+                        <Task key={task.id} task={task} folderId={index} onDelete={onDelete} updateTaskDone={updateTaskDone} editTaskText={editTaskText} />
                     )) : 'There are no tasks in this folder'}
                 </ul>
-                <FaPlusCircle className='add-task-btn'/>
+                <FaPlusCircle className='add-task-btn' onClick={() => addTask(folderId)} />
             </div>
         </div>
     )
