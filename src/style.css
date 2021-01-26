@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
+
 :root 
 {
 	--primary:  #5b768d;
@@ -15,7 +17,8 @@ body
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	overflow: hidden;
+    overflow: hidden;
+    font-family: 'Yusei Magic', sans-serif;
 }
 
 .container
@@ -58,6 +61,11 @@ h1
     margin: 3rem 1.5rem 0;
 }
 
+input[type='text'] 
+{ 
+    font-family: 'Yusei Magic', sans-serif; 
+}
+
 .tasks-counter
 {
 	margin: 1rem 1.5rem;
@@ -71,6 +79,7 @@ h1
     border-radius: 0.5rem;
     border: none;
     margin: 0 1rem;
+    font-family: 'Yusei Magic', sans-serif;
 }
 
 .btn:focus

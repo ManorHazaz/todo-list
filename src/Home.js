@@ -9,7 +9,7 @@ function Home ({ folders, addFolder, tasksToDo })
             <h1> Hello Manor! </h1>
             <p className='tasks-counter'> you have {tasksToDo()} tasks todo.</p>
             <button className='btn create-folder' onClick={addFolder} >Create New Folder </button>
-            <button className='btn-clean' > Edit </button>
+            <button className='btn-clean' > Delete </button>
 
             <div className='folders'>
                 {folders.map((folder) =>(
