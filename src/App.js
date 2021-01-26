@@ -1,5 +1,5 @@
 import {React , useState} from 'react';
-import {BrowserRouter as Router, Switch, Route, useParams, useRouteMatch} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
 
 import Home from './Home';
 import Tasks from './Tasks';
@@ -10,7 +10,7 @@ function App() {
         {
             id: 1,
             title: 'name',
-			logo: 'logo',
+			icon: 'FaFolder',
 			tasks: 
 			[ 
 				{
@@ -28,7 +28,7 @@ function App() {
         {
             id: 2,
             title: 'name',
-			logo: 'logo',
+			icon: 'FaFolder',
 			tasks: 
 			[ 
 				{
@@ -46,7 +46,7 @@ function App() {
         {
             id: 3,
             title: 'naasdme',
-			logo: 'logo',
+			icon: 'FaFolder',
 			tasks: 
 			[ 
 				{
@@ -62,11 +62,28 @@ function App() {
 			]
         }
 		]);
+	
+	function tasksToDo() 
+	{
+		var todo = 0;
+		folders.forEach( folder => 
+		{
+			folder.tasks.forEach( task => 
+			{
+				if(task.done === false)
+				{
+					todo++;
+				}
+			});
+		});
+
+		return todo;
+	}
 
 	function addFolder() 
 	{
 		const lastId = folders[folders.length-1].id;
-		const newFolder = { id: lastId + 1, title: 'new folder', logo: 'logo', tasks: [] };
+		const newFolder = { id: lastId + 1, title: 'new folder', icon: 'FaFolder', tasks: [] };
 		setFolders([ ...folders, newFolder ]);
 	}
 
@@ -80,6 +97,14 @@ function App() {
 			}))
 		);
 	}
+
+	const deleteFolder = (folderId) => 
+	{
+		console.log('delete folder' , folderId);
+		setFolders(folders.filter( (folder) => folder.id !== folderId ));
+		console.log(folders)
+		return <Redirect to="/" />
+    }
 	
 	function addTask(folderId) 
 	{
@@ -117,6 +142,16 @@ function App() {
 		)
 	}
 
+	function updateTaskDone( id )
+	{
+		setFolders((prev) =>
+			prev.map(({ tasks, ...rest }) => 
+			({
+				...rest,
+				tasks: tasks.map((task) => task.id === id ? {...task ,done: !task.done } :task )
+			}))
+		)
+	}
 
 	function deleteTask(taskId) 
 	{
@@ -129,37 +164,16 @@ function App() {
 		))
     }
 
-	function updateTaskDone( id )
-	{
-		setFolders((prev) =>
-			prev.map(({ tasks, ...rest }) => 
-			({
-				...rest,
-				tasks: tasks.map((task) => task.id === id ? {...task ,done: !task.done } :task )
-			}))
-		)
-	}
-
 	return (
 		<div className='App'>
 			<Router>
 				<Route path='/' exact render={(props) => 
 					(
-    					<Home {...props} folders={folders} addFolder={addFolder} />
+    					<Home {...props} folders={folders} addFolder={addFolder} tasksToDo={tasksToDo} />
   					)} 
 				/>
 				<Route path='/editFolder' />
-				{/* <Route path='/Tasks/:id' render={(props) => 
-					(
-    					<Tasks {...props} folders={folders} onDelete={deleteTask} updateTaskDone={updateTaskDone} />
-					)}
-				/>
-				<Route path='/Tasks/:id' > 
-					<Tasks folders={folders} onDelete={deleteTask} updateTaskDone={updateTaskDone} />
-				</Route> */}
-
-				<Route path='/Tasks/:id' children={<Tasks folders={folders} onDelete={deleteTask} updateTaskDone={updateTaskDone} addTask={addTask} editFolderName={editFolderName} editTaskText={editTaskText} /> } />
-
+				<Route path='/Tasks/:id' children={<Tasks folders={folders} deleteFolder={deleteFolder} onDelete={deleteTask} updateTaskDone={updateTaskDone} addTask={addTask} editFolderName={editFolderName} editTaskText={editTaskText} /> } />
 			</Router> 
 		</div>
 	);

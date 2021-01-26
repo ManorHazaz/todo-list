@@ -1,12 +1,17 @@
 :root 
 {
-	--primary:  #0d0764;
-	--secondary:  #15708b;
+	--primary:  #5b768d;
+    --secondary:  #58b4b0;
+    --background: #a5ebd2;
+}
+html
+{
+    background-color: var(--background);
 }
 
 body 
 {
-  height: 99vh;
+    height: 99vh;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -27,7 +32,9 @@ body
 {
 	background: 
 	radial-gradient( circle 9em at 35% 14%, var(--primary) 100%, transparent 101% ),
-	radial-gradient( circle 10em at 93% 16%,var(--secondary) 100%, transparent 101% )
+    radial-gradient( circle 10em at 93% 16%,var(--secondary) 100%, transparent 101% );
+    
+    background-color: #fbfbfb;
 }
 
 .page
@@ -66,6 +73,11 @@ h1
     margin: 0 1rem;
 }
 
+.btn:focus
+{
+    outline: none;
+}
+
 .btn-clean
 {
 	display: block;
@@ -81,8 +93,21 @@ h1
 {
     display: grid;
     grid-template-columns: 50% 50%;
-    grid-gap: 5%;
+    grid-column-gap: 0%;
+    grid-row-gap: 10%;
     width: 95%;
+    min-height: 15rem;
+    max-height: 15rem;
+    overflow: scroll;
+    overflow-x: hidden;
+    margin: auto;
+    padding: 1rem 0;
+}
+::-webkit-scrollbar 
+{
+    position: absolute;
+    margin: 0;
+    display: none;
 }
 
 .folder
@@ -95,33 +120,37 @@ h1
     padding-left: 5%;
     grid-gap: 5%;
     width: 75%;
-    height: 105%;
+    height: 90%;
+    color: black;
+    text-decoration: none;
 }
 
 .folder .icon
 {
 	justify-self: start;
-	align-self: center;
+    align-self: center;
 }
 
 .folder .tasks-counter
 {
 	justify-self: end;
-	align-self: center;
-	color: black;
-	/* margin: 0; */
+    align-self: center;
+    color: black;
+    margin: 1rem 0.4rem;
+    font-weight: 600;
 }
 
 .folder .title
 {
 	grid-column: 1 / span 2;
 	justify-self: start;
-	align-self: center;
-	/* margin: 0; */
+    align-self: center;
 }
 
-.folder-title
+.page .folder-title
 {
+    font-size: 1.5rem;
+    color: white;
 	margin: 1rem 1.5rem;
 }
 
@@ -167,7 +196,7 @@ h1
     background-color: #17e621ee;
 }
 
-.task .task-text
+.clean-text-input
 {
 	font-weight: 600;
 	color: var(--primary);
@@ -175,7 +204,7 @@ h1
     border: none;
 }
 
-.task .task-text:focus
+.clean-text-input:focus
 {
 	outline: none;
 }
@@ -195,9 +224,15 @@ h1
 
 .add-task-btn
 {
+    cursor: cell;
 	position: fixed;
     font-size: 3rem;
     top: 79%;
     left: 48.8%;
     color: var(--secondary);
+}
+
+.create-folder
+{
+    cursor: cell;
 }
