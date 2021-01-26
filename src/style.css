@@ -24,7 +24,7 @@ body
 .container
 {
   background-color: #fbfbfb;
-  border: 1px solid black;
+  border: 1px solid var(--primary);
   border-radius: 1rem;
   width: 20rem;
   min-height: 75vh;
@@ -105,10 +105,9 @@ input[type='text']
     grid-column-gap: 0%;
     grid-row-gap: 10%;
     width: 95%;
-    min-height: 15rem;
-    max-height: 15rem;
+    min-height: 30vh;
+    max-height: 40vh;
     overflow: scroll;
-    overflow-x: hidden;
     margin: auto;
     padding: 1rem 0;
 }
@@ -121,6 +120,7 @@ input[type='text']
 
 .folder
 {
+    position: relative;
 	justify-self: center;
     box-shadow: 0px 0px 16px -4px #888;
     border-radius: 1rem;
@@ -129,7 +129,7 @@ input[type='text']
     padding-left: 5%;
     grid-gap: 5%;
     width: 75%;
-    height: 90%;
+    height: 15vh;
     color: black;
     text-decoration: none;
 }
@@ -145,7 +145,7 @@ input[type='text']
 	justify-self: end;
     align-self: center;
     color: black;
-    margin: 1rem 0.4rem;
+    margin: 0.5rem;
     font-weight: 600;
 }
 
@@ -153,14 +153,34 @@ input[type='text']
 {
 	grid-column: 1 / span 2;
 	justify-self: start;
-    align-self: center;
+    align-self: start;
+    margin: 0;
+}
+
+.folder .delete-folder
+{
+    display: flex;
+	align-items: center;
+	justify-content: center;
+    background: rgba(0, 0, 0, 0.2);
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    border-radius: 1rem;
+}
+
+.folder .delete-folder .delete-icon
+{
+    font-size: 3rem;
 }
 
 .page .folder-title
 {
+    display: inline-block;
+    width: 70%;
     font-size: 1.5rem;
     color: white;
-	margin: 1rem 1.5rem;
+	margin: 1rem 0 1rem 1.5rem;
 }
 
 .backarrow
@@ -244,4 +264,63 @@ input[type='text']
 .create-folder
 {
     cursor: cell;
+}
+/* dropdown icons */
+
+.dropdown-icons
+{
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-icons svg
+{
+    font-size: 2rem;
+    padding: 0.2rem;
+}
+
+.dropdown-icons-content 
+{
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-icon
+{
+    display: block;
+}
+
+.dropdown-icons:hover .dropdown-icons-content 
+{
+    display: block;
+}
+
+
+/* folders wigeling */
+
+.delete-mode-true
+{
+    animation-name: keyframes1;
+    animation-iteration-count: infinite;
+    transform-origin: 50% 10%;
+    animation-delay: -.15s; 
+    animation-duration: .45s
+}
+
+@keyframes keyframes1 
+{
+    0% 
+    {
+        transform: rotate(-1deg);
+        animation-timing-function: ease-in;
+    }
+
+    50% 
+    {
+        transform: rotate(1.5deg);
+        animation-timing-function: ease-out;
+    }
 }

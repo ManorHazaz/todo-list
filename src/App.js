@@ -1,5 +1,7 @@
 import {React , useState} from 'react';
 import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
+import {library} from '@fortawesome/fontawesome-svg-core';
+import * as Icons from '@fortawesome/free-solid-svg-icons';
 
 import Home from './Home';
 import Tasks from './Tasks';
@@ -10,7 +12,7 @@ function App() {
         {
             id: 1,
             title: 'name',
-			icon: 'FaFolder',
+			icon: 'faFolder',
 			tasks: 
 			[ 
 				{
@@ -28,7 +30,7 @@ function App() {
         {
             id: 2,
             title: 'name',
-			icon: 'FaFolder',
+			icon: 'faFolder',
 			tasks: 
 			[ 
 				{
@@ -46,7 +48,7 @@ function App() {
         {
             id: 3,
             title: 'naasdme',
-			icon: 'FaFolder',
+			icon: 'faFolder',
 			tasks: 
 			[ 
 				{
@@ -62,6 +64,11 @@ function App() {
 			]
         }
 		]);
+	const iconList = Object.keys(Icons)
+	.filter((key) => key !== 'fas' && key !== 'prefix')
+	.map((icon) => Icons[icon]);
+
+	library.add(...iconList);
 	
 	function tasksToDo() 
 	{
@@ -82,8 +89,8 @@ function App() {
 
 	function addFolder() 
 	{
-		const lastId = folders[folders.length-1].id;
-		const newFolder = { id: lastId + 1, title: 'new folder', icon: 'FaFolder', tasks: [] };
+		const lastId = folders.length ? folders[folders.length-1].id : 0;
+		const newFolder = { id: lastId + 1, title: 'new folder', icon: 'faFolder', tasks: [] };
 		setFolders([ ...folders, newFolder ]);
 	}
 
@@ -98,12 +105,22 @@ function App() {
 		);
 	}
 
-	const deleteFolder = (folderId) => 
+	function editFolderIcon( icon, folderId ) 
 	{
-		console.log('delete folder' , folderId);
-		setFolders(folders.filter( (folder) => folder.id !== folderId ));
-		console.log(folders)
-		return <Redirect to="/" />
+		console.log('edit')
+		setFolders((prev) =>
+			prev.map(({id, icon, ...rest}) => 
+			({
+				...rest, id,
+				icon: id == folderId ? icon  : icon
+			}))
+		);
+	}
+
+	function deleteFolder (e, folderId)
+	{
+		e.preventDefault();
+		setFolders(folders.filter( folder => folder.id !== folderId ));
     }
 	
 	function addTask(folderId) 
@@ -169,11 +186,17 @@ function App() {
 			<Router>
 				<Route path='/' exact render={(props) => 
 					(
-    					<Home {...props} folders={folders} addFolder={addFolder} tasksToDo={tasksToDo} />
+    					<Home {...props} folders={folders} addFolder={addFolder} tasksToDo={tasksToDo} deleteFolder={deleteFolder} />
   					)} 
 				/>
 				<Route path='/editFolder' />
-				<Route path='/Tasks/:id' children={<Tasks folders={folders} deleteFolder={deleteFolder} onDelete={deleteTask} updateTaskDone={updateTaskDone} addTask={addTask} editFolderName={editFolderName} editTaskText={editTaskText} /> } />
+				<Route path='/Tasks/:id' children={
+
+				<Tasks folders={folders} deleteFolder={deleteFolder} onDelete={deleteTask} 
+				updateTaskDone={updateTaskDone} addTask={addTask} editFolderName={editFolderName} 
+				editTaskText={editTaskText} editFolderIcon={editFolderIcon} /> 
+
+				} />
 			</Router> 
 		</div>
 	);
