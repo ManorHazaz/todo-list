@@ -23,7 +23,7 @@ function Folder ({ folder, deleteMode, deleteFolder })
                 {deleteMode && <div className='delete-folder' onClick={(e) => deleteFolder(e, folder.id )}><FontAwesomeIcon icon={faTimes} className='delete-icon' /></div>}
                 <FontAwesomeIcon className='icon' icon={folder.icon} />
                 <p className='tasks-counter'>{tasksToDo()}</p>
-                <h3 className='title'>{folder.title}</h3>
+                <h3 className='title'>{folder.title == '' ? 'new folder' : folder.title}</h3>
         </Link>
     )
 }

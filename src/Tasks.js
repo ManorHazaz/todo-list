@@ -13,7 +13,7 @@ function Tasks({ folders , match, onDelete, updateTaskDone ,addTask, editFolderN
         <div className='container page'>
             <FontAwesomeIcon icon='arrow-left' onClick={() => history.goBack()} className='backarrow'/>
             <div className='title'>
-                <input type='text' className='clean-text-input folder-title' value={folders[index].title} onChange={(e) => editFolderName(e.target.value, folderId) } />
+                <input type='text' placeholder='new folder' className='clean-text-input folder-title' value={folders[index].title} onChange={(e) => editFolderName(e.target.value, folderId) } />
                 <div className='dropdown-icons'>
                 <FontAwesomeIcon className='active-icon' icon={folders[index].icon} />
                     <div className='dropdown-icons-content' >

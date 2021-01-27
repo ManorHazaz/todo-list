@@ -85,7 +85,7 @@ function App() {
 	function addFolder() 
 	{
 		const lastId = folders.length ? folders[folders.length-1].id : 0;
-		const newFolder = { id: lastId + 1, title: 'new folder', icon: 'folder', tasks: [] };
+		const newFolder = { id: lastId + 1, title: '', icon: 'folder', tasks: [] };
 		setFolders([ ...folders, newFolder ]);
 	}
 
@@ -131,7 +131,7 @@ function App() {
 			});
 		});
 		
-		const newTask = [{ id: lastId + 1, text: 'new task', done: false }];
+		const newTask = [{ id: lastId + 1, text: '', done: false }];
 
 		setFolders((prev) =>
 			prev.map(({id, tasks, ...rest}) => 

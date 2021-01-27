@@ -399,3 +399,20 @@ input[type='text']
     width: 1em !important;
 }
 
+/* placeholder color */
+
+.folder-title::placeholder 
+{ /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: 1; /* Firefox */
+}
+  
+.folder-title:-ms-input-placeholder 
+{ /* Internet Explorer 10-11 */
+    color: white;
+}
+  
+.folder-title::-ms-input-placeholder 
+{ /* Microsoft Edge */
+    color: white;
+}
