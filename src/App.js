@@ -11,54 +11,54 @@ function App() {
 	const [folders, setFolders] = useState([
 		{
             id: 1,
-            title: 'name',
+            title: 'general',
 			icon: 'folder',
 			tasks: 
 			[ 
 				{
 					id: 1,
-					text: 'blaas bla bla',
+					text: 'just task',
 					done: true,
 				},
 				{
 					id: 2,
-					text: 'bla bla bla',
+					text: 'one more',
 					done: false,
 				},
 			]
         },
         {
             id: 2,
-            title: 'name',
-			icon: 'folder',
+            title: 'my music',
+			icon: 'music',
 			tasks: 
 			[ 
 				{
 					id: 3,
-					text: 'blasdasda bla bla',
+					text: 'kendrick lamar',
 					done: true,
 				},
 				{
 					id: 4,
-					text: 'bla bla bla',
+					text: 'shazam',
 					done: false,
 				},
 			]
         },
         {
             id: 3,
-            title: 'naasdme',
-			icon: 'folder',
+            title: 'password',
+			icon: 'lock',
 			tasks: 
 			[ 
 				{
 					id: 5,
-					text: 'bla bla bla',
+					text: 'bank - 1234',
 					done: false,
 				},
 				{
 					id: 6,
-					text: 'bla bla bla',
+					text: 'facebook -2345',
 					done: false,
 				},
 			]
