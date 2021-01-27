@@ -1,8 +1,6 @@
 import Task from './Task';
 import { useHistory, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft, faTimes, faPlusCircle, faFolder, faMusic, faBriefcase, faBriefcaseMedical, faUtensils, faChild, faLock } from '@fortawesome/free-solid-svg-icons'
-
 
 function Tasks({ folders , match, onDelete, updateTaskDone ,addTask, editFolderName ,editTaskText, editFolderIcon}) 
 {
@@ -13,19 +11,19 @@ function Tasks({ folders , match, onDelete, updateTaskDone ,addTask, editFolderN
 
     return (
         <div className='container page'>
-            <FontAwesomeIcon icon={faArrowLeft} onClick={() => history.goBack()} className='backarrow'/>
+            <FontAwesomeIcon icon='arrow-left' onClick={() => history.goBack()} className='backarrow'/>
             <div className='title'>
                 <input type='text' className='clean-text-input folder-title' value={folders[index].title} onChange={(e) => editFolderName(e.target.value, folderId) } />
                 <div className='dropdown-icons'>
                 <FontAwesomeIcon icon={folders[index].icon} />
                     <div className='dropdown-icons-content' >
-                        <FontAwesomeIcon icon={faFolder} className='dropdown-icon' onClick={ () => editFolderIcon('faFolder', folderId) }/>
-                        <FontAwesomeIcon icon={faMusic} className='dropdown-icon' onClick={ () => editFolderIcon('faMusic', folderId) }/>
-                        <FontAwesomeIcon icon={faBriefcase} className='dropdown-icon' />
-                        <FontAwesomeIcon icon={faBriefcaseMedical} className='dropdown-icon' />
-                        <FontAwesomeIcon icon={faUtensils} className='dropdown-icon' />
-                        <FontAwesomeIcon icon={faChild} className='dropdown-icon' />
-                        <FontAwesomeIcon icon={faLock} className='dropdown-icon' />
+                        <FontAwesomeIcon icon='folder' className='dropdown-icon' onClick={ () => editFolderIcon('folder', folderId) }/>
+                        <FontAwesomeIcon icon='music' className='dropdown-icon' onClick={ () => editFolderIcon('music', folderId) }/>
+                        <FontAwesomeIcon icon='briefcase' className='dropdown-icon' onClick={ () => editFolderIcon('briefcase', folderId) }/>
+                        <FontAwesomeIcon icon='briefcase-medical' className='dropdown-icon' onClick={ () => editFolderIcon('briefcase-medical', folderId) }/>
+                        <FontAwesomeIcon icon='utensils' className='dropdown-icon' onClick={ () => editFolderIcon('utensils', folderId) }/>
+                        <FontAwesomeIcon icon='child' className='dropdown-icon' onClick={ () => editFolderIcon('child', folderId) }/>
+                        <FontAwesomeIcon icon='lock' className='dropdown-icon' onClick={ () => editFolderIcon('lock', folderId) }/>
                     </div>
                 </div>
             </div>
@@ -36,7 +34,7 @@ function Tasks({ folders , match, onDelete, updateTaskDone ,addTask, editFolderN
                         <Task key={task.id} task={task} folderId={index} onDelete={onDelete} updateTaskDone={updateTaskDone} editTaskText={editTaskText} />
                     )) : 'There are no tasks in this folder'}
                 </ul>
-                <FontAwesomeIcon icon={faPlusCircle} className='add-task-btn' onClick={() => addTask(folderId)} />
+                <FontAwesomeIcon icon='plus-circle' className='add-task-btn' onClick={() => addTask(folderId)} />
             </div>
         </div>
     )

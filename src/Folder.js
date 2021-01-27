@@ -9,7 +9,7 @@ function Folder ({ folder, deleteMode, deleteFolder })
     return (
         <Link className={`folder delete-mode-${deleteMode} `} to={`/tasks/${folder.id}`} >
                 {deleteMode && <div className='delete-folder' onClick={(e) => deleteFolder(e, folder.id )}><FontAwesomeIcon icon={faTimes} className='delete-icon' /></div>}
-                <FontAwesomeIcon className='icon' icon={faFolder} />
+                <FontAwesomeIcon className='icon' icon={folder.icon} />
                 <p className='tasks-counter'>{Object.keys(folder.tasks).length}</p>
                 <h3 className='title'>{folder.title}</h3>
         </Link>

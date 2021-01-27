@@ -12,7 +12,7 @@ function App() {
         {
             id: 1,
             title: 'name',
-			icon: 'faFolder',
+			icon: 'folder',
 			tasks: 
 			[ 
 				{
@@ -30,7 +30,7 @@ function App() {
         {
             id: 2,
             title: 'name',
-			icon: 'faFolder',
+			icon: 'folder',
 			tasks: 
 			[ 
 				{
@@ -48,7 +48,7 @@ function App() {
         {
             id: 3,
             title: 'naasdme',
-			icon: 'faFolder',
+			icon: 'folder',
 			tasks: 
 			[ 
 				{
@@ -90,7 +90,7 @@ function App() {
 	function addFolder() 
 	{
 		const lastId = folders.length ? folders[folders.length-1].id : 0;
-		const newFolder = { id: lastId + 1, title: 'new folder', icon: 'faFolder', tasks: [] };
+		const newFolder = { id: lastId + 1, title: 'new folder', icon: 'folder', tasks: [] };
 		setFolders([ ...folders, newFolder ]);
 	}
 
@@ -105,14 +105,14 @@ function App() {
 		);
 	}
 
-	function editFolderIcon( icon, folderId ) 
+	function editFolderIcon( iconChange, folderId ) 
 	{
 		console.log('edit')
 		setFolders((prev) =>
 			prev.map(({id, icon, ...rest}) => 
 			({
 				...rest, id,
-				icon: id == folderId ? icon  : icon
+				icon: id == folderId ? iconChange  : icon
 			}))
 		);
 	}
