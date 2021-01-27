@@ -17,7 +17,7 @@ function Home ({ folders, addFolder, tasksToDo, deleteFolder })
             <div className='folders'>
                 { folders.length > 0 ? folders.map((folder) =>(
                     <Folder key={folder.id} folder={folder} deleteMode={deleteMode} deleteFolder={deleteFolder} />
-                )) : 'There are no folders.' }
+                )) : <div className='no-folders'>There are no folders.</div> }
             </div>
         </div>
     )

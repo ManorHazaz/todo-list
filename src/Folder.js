@@ -5,12 +5,24 @@ import { Link } from 'react-router-dom';
 
 function Folder ({ folder, deleteMode, deleteFolder })
 {
+    function tasksToDo() 
+	{
+		var todo = 0;
+        folder.tasks.forEach( task => 
+        {
+            if(task.done === false)
+            {
+                todo++;
+            }
+        });
+		return todo;
+	}
 
     return (
         <Link className={`folder delete-mode-${deleteMode} `} to={`/tasks/${folder.id}`} >
                 {deleteMode && <div className='delete-folder' onClick={(e) => deleteFolder(e, folder.id )}><FontAwesomeIcon icon={faTimes} className='delete-icon' /></div>}
                 <FontAwesomeIcon className='icon' icon={folder.icon} />
-                <p className='tasks-counter'>{Object.keys(folder.tasks).length}</p>
+                <p className='tasks-counter'>{tasksToDo()}</p>
                 <h3 className='title'>{folder.title}</h3>
         </Link>
     )

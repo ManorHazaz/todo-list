@@ -1,19 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 :root 
 {
 	--primary:  #5b768d;
     --secondary:  #58b4b0;
     --background: #a5ebd2;
+    --defult: #fbfbfb;
+}
+
+*
+{
+    box-sizing: border-box;
 }
 html
 {
-    background-color: var(--background);
+    background-color: var(--backgrdeound);
 }
 
 body 
 {
-    height: 99vh;
+    height: 98vh;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -23,13 +30,14 @@ body
 
 .container
 {
-  background-color: #fbfbfb;
-  border: 1px solid var(--primary);
-  border-radius: 1rem;
-  width: 20rem;
-  min-height: 75vh;
-  overflow: hidden;
-}
+    position: relative;
+    background-color: var(--defult);
+    border-radius: 1.5rem;
+    width: 19rem;
+    min-height: 85vh;
+    overflow: hidden;
+    box-shadow: 0 0 30px 0 rgb(0 0 0 / 50%);
+    }
 
 .home
 {
@@ -37,7 +45,6 @@ body
 	radial-gradient( circle 9em at 35% 14%, var(--primary) 100%, transparent 101% ),
     radial-gradient( circle 10em at 93% 16%,var(--secondary) 100%, transparent 101% );
     
-    background-color: #fbfbfb;
 }
 
 .page
@@ -45,13 +52,12 @@ body
 	background-color: var(--primary);
 }
 
-.contant
+.content
 {
-	background-color: #fbfbfb;
-	border-top-left-radius: 1rem;
-	border-top-right-radius: 1rem;
+	background-color: var(--defult);
+	border-radius: inherit;
 	width: 100%;
-	height: 56vh;
+    height: 62vh;
 	margin: 0;
 }
 
@@ -63,7 +69,7 @@ h1
 
 input[type='text'] 
 { 
-    font-family: 'Yusei Magic', sans-serif; 
+    font-family: 'Poppins', sans-serif;
 }
 
 .tasks-counter
@@ -82,7 +88,7 @@ input[type='text']
     font-family: 'Yusei Magic', sans-serif;
 }
 
-.btn:focus
+.btn:focus, .btn-clean:focus
 {
     outline: none;
 }
@@ -102,12 +108,13 @@ input[type='text']
 {
     display: grid;
     grid-template-columns: 50% 50%;
+    grid-template-rows: 15vh 15vh;
     grid-column-gap: 0%;
     grid-row-gap: 10%;
     width: 95%;
-    min-height: 30vh;
-    max-height: 40vh;
-    overflow: scroll;
+    min-height: 43vh;
+    max-height: 43vh;
+    overflow: auto;
     margin: auto;
     padding: 1rem 0;
 }
@@ -118,20 +125,28 @@ input[type='text']
     display: none;
 }
 
+.no-folders
+{
+    position: absolute;
+}
+
 .folder
 {
     position: relative;
-	justify-self: center;
-    box-shadow: 0px 0px 16px -4px #888;
-    border-radius: 1rem;
+    justify-self: center;
+    box-shadow: 0px 0px 15px 0 rgb(0 0 0 / 25%);
+    border-radius: 1.5rem;
     display: grid;
     grid-template-columns: 45% 45%;
     padding-left: 5%;
+    padding: 5% 10%;
+    margin-bottom: 1rem;
     grid-gap: 5%;
-    width: 75%;
-    height: 15vh;
+    width: 85%;
+    height: 100%;
     color: black;
     text-decoration: none;
+    font-family: 'Poppins', sans-serif;
 }
 
 .folder .icon
@@ -146,7 +161,7 @@ input[type='text']
     align-self: center;
     color: black;
     margin: 0.5rem;
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .folder .title
@@ -155,6 +170,7 @@ input[type='text']
 	justify-self: start;
     align-self: start;
     margin: 0;
+    font-size: 1rem;
 }
 
 .folder .delete-folder
@@ -166,7 +182,7 @@ input[type='text']
     width: 100%;
     position: absolute;
     height: 100%;
-    border-radius: 1rem;
+    border-radius: inherit;
 }
 
 .folder .delete-folder .delete-icon
@@ -222,7 +238,7 @@ input[type='text']
 
 .task .done
 {
-    background-color: #17e621ee;
+    background-color: #2da734ee;
 }
 
 .clean-text-input
@@ -254,11 +270,12 @@ input[type='text']
 .add-task-btn
 {
     cursor: cell;
-	position: fixed;
+    position: absolute;
     font-size: 3rem;
-    top: 79%;
-    left: 48.8%;
-    color: var(--secondary);
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var( --secondary);
 }
 
 .create-folder
@@ -275,15 +292,21 @@ input[type='text']
 
 .dropdown-icons svg
 {
-    font-size: 2rem;
-    padding: 0.2rem;
+    font-size: 3rem;
+    padding: 0.8rem;
+}
+
+.dropdown-icons .active-icon
+{
+    padding: 0 0.8rem;
+    padding-top: 1rem;
 }
 
 .dropdown-icons-content 
 {
     display: none;
     position: absolute;
-    background-color: #f1f1f1;
+    background-color: var(--defult);
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
@@ -291,6 +314,12 @@ input[type='text']
 .dropdown-icon
 {
     display: block;
+    font-size: 1rem;
+}
+
+.dropdown-icon:hover 
+{
+    background-color: #817b7b;
 }
 
 .dropdown-icons:hover .dropdown-icons-content 
@@ -305,7 +334,7 @@ input[type='text']
 {
     animation-name: keyframes1;
     animation-iteration-count: infinite;
-    transform-origin: 50% 10%;
+    transform-origin: 50% 50%;
     animation-delay: -.15s; 
     animation-duration: .45s
 }
@@ -324,3 +353,44 @@ input[type='text']
         animation-timing-function: ease-out;
     }
 }
+
+/* icons color */
+
+.fa-folder
+{
+    color: #333333;
+}
+
+.fa-music
+{
+    color: #3131e0;
+}
+
+.fa-briefcase
+{
+    color: #d6292968;
+}
+
+.fa-briefcase-medical
+{
+    color: #df5454;
+}
+
+.fa-utensils
+{
+    color: #1b9e1b;
+    width: 1em !important;
+}
+
+.fa-child 
+{
+    color: plum;
+    width: 1em !important;
+}
+
+.fa-lock
+{
+    color: goldenrod;
+    width: 1em !important;
+}
+
