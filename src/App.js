@@ -1,4 +1,4 @@
-import {React , useState} from 'react';
+import {React , useState, useEffect} from 'react';
 import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import * as Icons from '@fortawesome/free-solid-svg-icons';
@@ -8,63 +8,63 @@ import Tasks from './Tasks';
 
 
 function App() {
-	const [folders, setFolders] = useState([]);
+	const [folders, setFolders] = useState([
+		{
+            id: 1,
+            title: 'name',
+			icon: 'folder',
+			tasks: 
+			[ 
+				{
+					id: 1,
+					text: 'blaas bla bla',
+					done: true,
+				},
+				{
+					id: 2,
+					text: 'bla bla bla',
+					done: false,
+				},
+			]
+        },
+        {
+            id: 2,
+            title: 'name',
+			icon: 'folder',
+			tasks: 
+			[ 
+				{
+					id: 3,
+					text: 'blasdasda bla bla',
+					done: true,
+				},
+				{
+					id: 4,
+					text: 'bla bla bla',
+					done: false,
+				},
+			]
+        },
+        {
+            id: 3,
+            title: 'naasdme',
+			icon: 'folder',
+			tasks: 
+			[ 
+				{
+					id: 5,
+					text: 'bla bla bla',
+					done: false,
+				},
+				{
+					id: 6,
+					text: 'bla bla bla',
+					done: false,
+				},
+			]
+        }
+	]);
 
-		// {
-        //     id: 1,
-        //     title: 'name',
-		// 	icon: 'folder',
-		// 	tasks: 
-		// 	[ 
-		// 		{
-		// 			id: 1,
-		// 			text: 'blaas bla bla',
-		// 			done: true,
-		// 		},
-		// 		{
-		// 			id: 2,
-		// 			text: 'bla bla bla',
-		// 			done: false,
-		// 		},
-		// 	]
-        // },
-        // {
-        //     id: 2,
-        //     title: 'name',
-		// 	icon: 'folder',
-		// 	tasks: 
-		// 	[ 
-		// 		{
-		// 			id: 3,
-		// 			text: 'blasdasda bla bla',
-		// 			done: true,
-		// 		},
-		// 		{
-		// 			id: 4,
-		// 			text: 'bla bla bla',
-		// 			done: false,
-		// 		},
-		// 	]
-        // },
-        // {
-        //     id: 3,
-        //     title: 'naasdme',
-		// 	icon: 'folder',
-		// 	tasks: 
-		// 	[ 
-		// 		{
-		// 			id: 5,
-		// 			text: 'bla bla bla',
-		// 			done: false,
-		// 		},
-		// 		{
-		// 			id: 6,
-		// 			text: 'bla bla bla',
-		// 			done: false,
-		// 		},
-		// 	]
-        // }
-	
 	function tasksToDo() 
 	{
 		var todo = 0;
@@ -102,7 +102,6 @@ function App() {
 
 	function editFolderIcon( iconChange, folderId ) 
 	{
-		console.log('edit')
 		setFolders((prev) =>
 			prev.map(({id, icon, ...rest}) => 
 			({

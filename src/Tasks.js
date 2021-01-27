@@ -29,11 +29,11 @@ function Tasks({ folders , match, onDelete, updateTaskDone ,addTask, editFolderN
             </div>
             
             <div className='content'>
-                <ul className='tasks'>
+                <div className='tasks'>
                     { folders[index].tasks.length > 0 ? folders[index].tasks.map((task) =>(
                         <Task key={task.id} task={task} folderId={index} onDelete={onDelete} updateTaskDone={updateTaskDone} editTaskText={editTaskText} />
                     )) : 'There are no tasks in this folder'}
-                </ul>
+                </div>
             </div>
             <FontAwesomeIcon icon='plus-circle' className='add-task-btn' onClick={() => addTask(folderId)} />
         </div>
