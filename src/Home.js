@@ -7,7 +7,7 @@ function Home ({ folders, addFolder, tasksToDo, deleteFolder })
 
     return (
         <div className='container home'>
-            <h1> Hello Manor! </h1>
+            <h1> Hello User! </h1>
             <p className='tasks-counter'> you have { tasksToDo() } tasks todo.</p>
             <button className='btn create-folder' onClick={ addFolder } >Create New Folder </button>
             <button className='btn-clean' onClick={ () => setDeleteMode( !deleteMode ) } > Delete </button>
