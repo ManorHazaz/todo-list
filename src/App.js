@@ -11,7 +11,7 @@ function App() {
 	const [folders, setFolders] = useState([
 		{
             id: 1,
-            title: 'general',
+            title: 'General',
 			icon: 'folder',
 			tasks: 
 			[ 
@@ -29,7 +29,7 @@ function App() {
         },
         {
             id: 2,
-            title: 'my music',
+            title: 'My music',
 			icon: 'music',
 			tasks: 
 			[ 
@@ -47,7 +47,7 @@ function App() {
         },
         {
             id: 3,
-            title: 'password',
+            title: 'Passwords',
 			icon: 'lock',
 			tasks: 
 			[ 

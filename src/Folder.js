@@ -19,11 +19,13 @@ function Folder ({ folder, deleteMode, deleteFolder })
 	}
 
     return (
-        <Link className={`folder delete-mode-${deleteMode} `} to={`/tasks/${folder.id}`} >
-                {deleteMode && <div className='delete-folder' onClick={(e) => deleteFolder(e, folder.id )}><FontAwesomeIcon icon={faTimes} className='delete-icon' /></div>}
-                <FontAwesomeIcon className='icon' icon={folder.icon} />
-                <p className='tasks-counter'>{tasksToDo()}</p>
-                <h3 className='title'>{folder.title == '' ? 'new folder' : folder.title}</h3>
+        <Link className={`folder delete-mode-${ deleteMode } `} to={`/tasks/${ folder.id }`} >
+                { deleteMode && <div className='delete-folder' onClick={(e) => deleteFolder( e, folder.id )}><FontAwesomeIcon icon={faTimes} className='delete-icon' /></div>}
+                <div className='wrapper'>
+                    <FontAwesomeIcon className='icon' icon={folder.icon} />
+                    <p className='tasks-counter'>{tasksToDo()}</p>
+                </div>
+                <h3 className='title'>{ folder.title == '' ? 'new folder' : folder.title }</h3>
         </Link>
     )
 }
